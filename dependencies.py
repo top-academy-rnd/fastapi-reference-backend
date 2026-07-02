@@ -27,7 +27,7 @@ async def get_authenticated_user(
     stmt = select(LoginSession).where(LoginSession.secret == session_secret)
     login_session = await session.scalar(stmt)
     if login_session is None:
-        raise HTTPException(status_code=401, detail="Authenticated")
+        raise HTTPException(status_code=401, detail="Not authenticated")
 
     stmt = select(User).where(User.id == login_session.user_id)
     authenticated_user = await session.scalar(stmt)

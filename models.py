@@ -20,7 +20,7 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     login: Mapped[str] = mapped_column(unique=True)
-    password: Mapped[str]
+    password_hash: Mapped[str]
 
 
 class Product(Base):
