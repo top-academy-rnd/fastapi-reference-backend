@@ -21,6 +21,7 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     login: Mapped[str] = mapped_column(unique=True)
     password_hash: Mapped[str]
+    age: Mapped[int | None]
 
 
 class Product(Base):
