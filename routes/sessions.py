@@ -1,6 +1,8 @@
+from datetime import datetime, timedelta
 from typing import Annotated
 
 from argon2 import PasswordHasher
+from argon2.exceptions import VerificationError
 from fastapi import APIRouter, Depends, HTTPException, Body, Header
 from pydantic import BaseModel
 from sqlalchemy import select
@@ -44,13 +46,16 @@ async def create_session(
 
     # Аутентификация
     # 2. проверить пароль
-    if not ph.verify(user.password_hash, password):
+    try:
+        ph.verify(user.password_hash, password)
+    except VerificationError:
         raise HTTPException(status_code=401, detail="Not authenticated")
 
     # Создаём сессию в БД
     new_login_session = LoginSession(
         user_id=user.id,
         secret=str(uuid4()),
+        expires_at=datetime.now() + timedelta(days=90),
     )
     session.add(new_login_session)
     await session.commit()
