@@ -48,6 +48,7 @@ uv run pytest tests
 * SQLAlchemy (ORM)
 * Asyncpg
 * PostgreSQL
+* Alembic
 
 # Предметная область
 
