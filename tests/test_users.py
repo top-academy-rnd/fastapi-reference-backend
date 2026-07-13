@@ -16,3 +16,23 @@ def test_registration():
     assert r.status_code == 200
     data = r.json()
     assert data == {"id": data["id"], "login": test_login}
+
+
+def get_registered_user():
+    """ Регистрирует пользователя, возвращает логин и пароль"""
+
+    pass
+
+
+def test_create_session_incorrect_password():  # проверяем вход с некорректным паролем
+    # регистрируете пользователя через функцию
+    # на этом пользователе делаете проверку
+
+    pass
+
+
+def test_create_session_correct_password():  # проверяем вход с корректным паролем
+    # регистрируете пользователя через функцию
+    # на этом пользователе делаете проверку
+
+    pass
