@@ -6,4 +6,4 @@ COPY . /app
 
 WORKDIR /app
 
-RUN uv sync
+RUN /root/.local/bin/uv sync
