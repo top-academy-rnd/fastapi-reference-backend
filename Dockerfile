@@ -4,4 +4,4 @@ COPY . /app
 
 WORKDIR /app
 
-RUN uv sync
+RUN ["uv", "sync"]
