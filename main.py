@@ -9,6 +9,7 @@ from routes import users, carts, products, sessions
 app = FastAPI()
 
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_headers="*",
@@ -23,4 +24,4 @@ app.include_router(products.router)
 app.include_router(sessions.router)
 
 
-run(app)
+run(app, host="0.0.0.0")
