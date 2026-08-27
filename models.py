@@ -6,7 +6,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 engine = create_async_engine(
-    "postgresql+asyncpg://postgres:postgres@127.0.0.1/lesson",
+    "postgresql+asyncpg://postgres:postgres@postgres:5432/postgres",
     echo=True,
 )
 
