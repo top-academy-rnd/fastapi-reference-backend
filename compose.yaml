@@ -1,0 +1,15 @@
+services:
+  web-server:
+    build: .
+    command: uv run main.py
+    ports:
+      - 8080:8000
+
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  run-migrations:
+    build: .
+    command: uv run alembic upgrade head
