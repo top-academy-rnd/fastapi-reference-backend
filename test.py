@@ -1,8 +1,10 @@
+from copy import deepcopy
 
+array = [[1, 2], [3, 4]]
+array_copy = array.copy()
+array_deepcopy = deepcopy(array_copy)
 
-def some_function(a: int):
-    b = a + 1
+array[0].pop(0)
 
-
-
-some_function(5)
+a = 1
+a = a + 2
