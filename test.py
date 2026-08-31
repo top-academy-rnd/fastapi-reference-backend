@@ -1,10 +1,23 @@
-from copy import deepcopy
+import threading
+from time import sleep
 
-array = [[1, 2], [3, 4]]
-array_copy = array.copy()
-array_deepcopy = deepcopy(array_copy)
+NUMBERS = []
 
-array[0].pop(0)
 
-a = 1
-a = a + 2
+def function_for_thread_2():
+    acked_len = 0
+    while True:
+        if len(NUMBERS) > acked_len:
+            print("")
+            print("sum: ", sum(NUMBERS))
+            print("> ", end="")
+            acked_len = len(NUMBERS)
+        sleep(5)
+
+
+th_2 = threading.Thread(target=function_for_thread_2)
+th_2.start()
+
+
+while True:
+    NUMBERS.append(int(input("> ")))
