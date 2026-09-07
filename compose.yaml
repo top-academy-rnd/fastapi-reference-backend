@@ -14,3 +14,9 @@ services:
   run-migrations:
     build: .
     command: uv run alembic upgrade head
+
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    ports:
+      - ${COMPOSE_FRONTEND_PORT}:5173
