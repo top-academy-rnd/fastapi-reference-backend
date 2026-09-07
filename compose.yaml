@@ -17,6 +17,6 @@ services:
 
   frontend:
     build: ./frontend
-    command: npm run dev
+    command: npm run dev --host=0.0.0.0
     ports:
       - ${COMPOSE_FRONTEND_PORT}:5173
