@@ -1,3 +1,4 @@
+name: "${COMPOSE_NAME}"
 services:
   web-server:
     build: .
