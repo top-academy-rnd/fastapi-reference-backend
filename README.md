@@ -74,3 +74,35 @@ uv run pytest tests
 В названии классов схем сначала указывается модель о которой говорим (например User), затем контекст в котором мы используем эту модель (например Create или Response).
 
 Модели SQLAlchemy находятся в `models`.
+
+# Схема работы сервисов (кроме бд)
+
+```mermaid
+graph TD
+    Browser[Browser]
+    
+    subgraph Host[Host Machine]
+        Port80[Port 80]
+        
+        subgraph Docker[Docker Network]
+            Nginx[Nginx Container<br>Port 80]
+            Frontend[Frontend Container<br>Vite/React/Vue<br>Port 5173]
+        end
+    end
+
+    %% Request Flow
+    Browser -->|1. HTTP Request on 80.68.156.37:80 | Port80
+    Port80 -->|2. Reverse Proxy| Nginx
+    Nginx -->|3. Forward Request to frontend:5173| Frontend
+    
+    %% Response Flow
+    Frontend -->|4. HTTP Response| Nginx
+    Nginx -->|5. HTTP Response| Browser
+
+    %% Styling
+    style Browser fill:#f9f,stroke:#333,stroke-width:2px
+    style Host fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style Docker fill:#fffde7,stroke:#fbc02d,stroke-width:2px,stroke-dasharray: 5 5
+    style Nginx fill:#85ffc7,stroke:#00c853,stroke-width:2px
+    style Frontend fill:#ffcc80,stroke:#f57c00,stroke-width:2px
+```
