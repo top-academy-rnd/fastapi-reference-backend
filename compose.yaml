@@ -23,5 +23,7 @@ services:
 
   gateway:
     image: nginx:1.31.5
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 80:80
