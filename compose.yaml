@@ -20,3 +20,8 @@ services:
     command: npm run dev -- --host 0.0.0.0
     ports:
       - ${COMPOSE_FRONTEND_PORT}:5173
+
+  gateway:
+    image: nginx:1.31.5
+    ports:
+      - 80:80
