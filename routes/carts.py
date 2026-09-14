@@ -50,6 +50,10 @@ async def get_cart_items(
     return result
 
 
+@router.post(
+    "/users/{user_id}/cart/items",
+    response_model=list[CartItemResponse],
+)
 async def create_cart_item(
         user_id: int,
         authenticated_user: Annotated[User, Depends(get_authenticated_user)],
