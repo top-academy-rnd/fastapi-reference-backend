@@ -1,6 +1,6 @@
 from typing import Annotated
-
 from fastapi import APIRouter, Body, Depends
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from dependencies import get_session
@@ -36,5 +36,10 @@ async def create_product(
     "/products",
     response_model=list[ProductResponse],
 )
-async def get_all_products():
-    pass
+async def get_all_products(
+    session: Annotated[AsyncSession, Depends(get_session)],
+):
+    query = select(Product)
+    result = await session.execute(query)
+    products = result.scalars().all()
+    return products
