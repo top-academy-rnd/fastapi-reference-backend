@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import users, carts, products, sessions
 
 
-app = FastAPI(prefix="/api")
+app = FastAPI(root_path="/api")
 
 
 
